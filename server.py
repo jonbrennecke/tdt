@@ -47,13 +47,15 @@ class WSServer( tornado.websocket.WebSocketHandler ) :
 	# handle input from socket
 	def on_message( self, message ) :
 
+		print message
+
 		# unstringify the JSON message
 		data = json.loads( message )
 
 		print data
 
-		self.write_message()
-		self.finish()
+		self.write_message('recieved')
+		
 
 
 	def on_close( self ):
@@ -73,7 +75,7 @@ def stopTornado():
 if __name__ == "__main__":
 
     threading.Thread(target=startTornado).start()
-    time.sleep(10)
+    time.sleep(50)
     stopTornado()
 
 
