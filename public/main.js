@@ -1,28 +1,42 @@
 requirejs.config({
+
 	paths : {
 		jquery : "bower_components/jquery/dist/jquery.min",
-		"jquery-ui" : "bower_components/jquery-ui/ui/minified/jquery-ui.min",
-		"Q" : "bower_components/q/q"
+		jqueryui : "bower_components/jquery-ui/ui/minified/jquery-ui.min",
+		Q : "bower_components/q/q",
+		underscore : "bower_components/underscore/underscore"
 
 	},
 
 	shim : {
 		jquery : {
-			exports : "$"
+			exports : '$'
 		},
 
-		"jquery-ui" : {
+		underscore : {
+			deps: [ 'jquery' ],
+			exports : '_'
+		},
+
+		jqueryui : {
 			exports : '$',
 			deps : [ 'jquery' ]
 		},
 
-		"Q" : {
-			exports : "Q"
+		Q : {
+			deps : ['underscore'],
+			exports : 'Q'
 		}
 	}
 });
 
 
-require([ "jquery", "jquery-ui", "Q" ], function ( $ ) {
-	console.log($)
+require([ "Q" ], function ( Q ) {
+	
+	require([ "ws" ],function( WSClient ) {
+		console.log(WSClient)
+	})
+
 });
+
+
