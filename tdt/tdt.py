@@ -41,15 +41,9 @@ if __name__ == "__main__":
 
 	tdt = TDT()
 
-	tank = 'C:\\TDT\\OpenEx\\MyProjects\\OptoTaggingTest_6-05\\DataTanks\\Demotank2'
-	block = '6_13_14_10Min_stim2'
+	tank = 'C:\\Users\\brennecke.jonathan\\Desktop\\'
+	block = '6_17_14_10min_Stim'
 
 	tdt.open( tank, block )
 	n = tdt.readEventsSimple( 'eNeu' )
-	tdt.parseEv(0,n)
-
-	{
-		eNeu
-
-	}
-		
+	print tdt.parseEv(0,n)

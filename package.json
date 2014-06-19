@@ -1,0 +1,30 @@
+{
+  "name": "tdt",
+  "version": "0.0.0",
+  "description": "tdt\r ===",
+  "main": "index.html",
+  "dependencies": {
+    "express": "^4.4.3",
+    "ffi": "^1.2.6",
+    "q": "^1.0.1",
+    "nodewebkit": "^0.8.6-3",
+    "socket.io-client": "^1.0.5",
+    "socket.io": "^1.0.5",
+    "win32ole": "^0.1.3",
+    "win32ole-dev": "^0.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonbrennecke/tdt"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonbrennecke/tdt/issues"
+  },
+  "homepage": "https://github.com/jonbrennecke/tdt"
+}

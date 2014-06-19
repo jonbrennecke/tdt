@@ -9,9 +9,7 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 import tornado.websocket
-import os.path
-import uuid
-import json
+import time, threading, json
 
 from tornado.options import define, options
 
@@ -29,13 +27,7 @@ class Application( tornado.web.Application ):
 		handlers = [
 			(r"/websocket", WSServer),
 		]
-		settings = dict(
-			cookie_secret="1234",
-			template_path=os.path.join(os.path.dirname(__file__), "templates"),
-			static_path=os.path.join(os.path.dirname(__file__), "static"),
-			xsrf_cookies=True,
-		)
-		tornado.web.Application.__init__(self, handlers, **settings)
+		tornado.web.Application.__init__(self, handlers)
 
 
 
@@ -46,6 +38,9 @@ class WSServer( tornado.websocket.WebSocketHandler ) :
 	WebSocket server
 	"""
 
+	def get(self):
+		self.write('hello world')
+
 	def open(self):
 		print "WebSocket opened"
 
@@ -55,21 +50,30 @@ class WSServer( tornado.websocket.WebSocketHandler ) :
 		# unstringify the JSON message
 		data = json.loads( message )
 
+		print data
+
 		self.write_message()
+		self.finish()
 
 
 	def on_close( self ):
 		print "WebSocket closed"
 
 
-
-def main():
+def startTornado():
     tornado.options.parse_command_line()
     app = Application()
     app.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
+def stopTornado():
+    tornado.ioloop.IOLoop.instance().stop()
+
 
 if __name__ == "__main__":
-    main()
+
+    threading.Thread(target=startTornado).start()
+    time.sleep(10)
+    stopTornado()
+
 
