@@ -1,0 +1,67 @@
+@import "../font-awesome/scss/font-awesome"
+
+$bg: lighten(#c1b2a4,25%)
+$header: #485968
+$green: #64a686
+$red: #f4665f
+
+@mixin font ()
+	font-family: "Helvetica Neue", sans-serif
+	font-weight: lighter
+
+body
+	background: $bg
+	margin: 0
+
+.header-wrap
+	background: darken($header,15%)
+	position: relative
+	font-size: 12pt
+	color: $bg
+	width: 100%
+
+	.header
+		.fa
+			padding: 1em
+			background: darken($header,50%)
+
+			.tanks
+				@include font
+				display: none
+
+
+			&:hover
+				background: darken($header,75%)
+
+				.tanks
+					display: block
+					position: absolute
+					width: 25%
+					font-size: 18pt
+					top: 100%
+					padding: 0.75em 0
+					background: darken($header,75%)
+					left: 0
+
+					.tank
+						padding: 0.25em 1em
+
+						&:hover
+							background: $header
+							cursor: pointer
+
+					.blocks
+						display: none
+						position: absolute
+						width: 100%
+						height: 100%
+						top: 0
+						left: 100%
+						background: $header
+						padding: 0.75em 0
+
+						.block
+							padding: 0.25em 1em
+							&:hover
+								color: $red
+
