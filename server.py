@@ -10,6 +10,7 @@ import tornado.options
 import tornado.web
 import tornado.websocket
 import time, threading, json
+from tdt.tdt import TDT
 
 from tornado.options import define, options
 
@@ -29,7 +30,7 @@ class Application( tornado.web.Application ):
 		]
 		tornado.web.Application.__init__(self, handlers)
 
-
+		
 
 
 class WSServer( tornado.websocket.WebSocketHandler ) :
@@ -37,6 +38,10 @@ class WSServer( tornado.websocket.WebSocketHandler ) :
 	"""
 	WebSocket server
 	"""
+
+	def __init__( self, application, request, **kwargs ) :
+		super( WSServer, self ).__init__( application, request, **kwargs)
+		self.tdt = TDT()
 
 	def get(self):
 		self.write('hello world')
@@ -50,10 +55,17 @@ class WSServer( tornado.websocket.WebSocketHandler ) :
 		# unstringify the JSON message
 		data = json.loads( message )
 
-		print data["function"]
+		if hasattr( TDT, data["function"] ) and callable( getattr( TDT, data["function"] ) ) :
+			
+			if "args" in data :
+				jsonEncoded = json.dumps( getattr(self.tdt, data["function"])( data["args"] ) )
+			else :
+				jsonEncoded = json.dumps( getattr(self.tdt, data["function"])() )
 
-		self.write_message('recieved')
-		
+			self.write_message( jsonEncoded )
+
+		else :
+			self.write_message( json.dumps( AttributeError() ) )
 
 
 	def on_close( self ):
@@ -71,6 +83,7 @@ def stopTornado():
 
 
 if __name__ == "__main__":
+
 
 	startTornado()
 
