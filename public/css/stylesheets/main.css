@@ -2516,64 +2516,44 @@ body {
 }
 
 /* line 16, ../sass/main.sass */
-.header-wrap {
-  background: #29323b;
-  position: relative;
-  font-size: 12pt;
-  color: #f5f2f0;
+.graph-wrap {
+  position: absolute;
+  top: 10%;
+  height: 80%;
   width: 100%;
+  background: #eae5e1;
+  border: 1px solid #d6ccc2;
 }
 /* line 24, ../sass/main.sass */
-.header-wrap .header .fa {
-  padding: 1em;
-  background: black;
+.graph-wrap #graph {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
-/* line 28, ../sass/main.sass */
-.header-wrap .header .fa .tanks {
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: lighter;
-  display: none;
+/* line 29, ../sass/main.sass */
+.graph-wrap #graph path {
+  stroke: #64a686;
+  stroke-width: 1;
+  fill: none;
 }
-/* line 33, ../sass/main.sass */
-.header-wrap .header .fa:hover {
-  background: black;
+/* line 34, ../sass/main.sass */
+.graph-wrap #graph .axis, .graph-wrap #graph .x-axis, .graph-wrap #graph .y-axis {
+  shape-rendering: crispEdges;
 }
-/* line 36, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks {
-  display: block;
-  position: absolute;
-  width: 25%;
-  font-size: 18pt;
-  top: 100%;
-  padding: 0.75em 0;
-  background: black;
-  left: 0;
+/* line 40, ../sass/main.sass */
+.graph-wrap #graph .x-axis line {
+  stroke: #c1b2a4;
+}
+/* line 43, ../sass/main.sass */
+.graph-wrap #graph .x-axis .minor {
+  stroke-opacity: 0.5;
 }
 /* line 46, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks .tank {
-  padding: 0.25em 1em;
+.graph-wrap #graph .x-axis path {
+  display: none;
 }
 /* line 49, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks .tank:hover {
-  background: #485968;
-  cursor: pointer;
-}
-/* line 53, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks .blocks {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 100%;
-  background: #485968;
-  padding: 0.75em 0;
-}
-/* line 63, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks .blocks .block {
-  padding: 0.25em 1em;
-}
-/* line 65, ../sass/main.sass */
-.header-wrap .header .fa:hover .tanks .blocks .block:hover {
-  color: #f4665f;
+.graph-wrap #graph .y-axis line, .graph-wrap #graph .y-axis path {
+  fill: none;
+  stroke: #c1b2a4;
 }
